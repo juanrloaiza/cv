@@ -3,7 +3,7 @@ on:
   pull_request:
     branches: [main]
 jobs:
-  render-paper:
+  render-CV:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
