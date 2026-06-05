@@ -1,0 +1,12 @@
+name: Test Typst Compilation
+on: 
+  pull_request:
+    branches: [main]
+jobs:
+  render-CV:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: typst-community/setup-typst@v5
+      # 🎉 Now Typst is installed!
+      - run: typst compile main.typ main.pdf
