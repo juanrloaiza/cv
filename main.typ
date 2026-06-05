@@ -1,12 +1,12 @@
 #import "@preview/fontawesome:0.6.0": *
 
 #let lang = "es"
-#let translations = yaml("translations.yml")
+#let translations = yaml("data/i18n/translations.yml")
 #let t(key) = {
   return translations.at(key).at(lang)
 }
 
-#let countries = yaml("countries.yml")
+#let countries = yaml("data/i18n/countries.yml")
 #let translateCountry(country_key) = {
   return countries.at(country_key).at(lang)
 }
@@ -33,8 +33,7 @@
 
 = Juan Raúl Loaiza Arias
 
-Profesor asociado · Departamento de Filosofía · Universidad Alberto Hurtado · Chile
-
+#t("affiliation")
 
 #block(width: 100%)[
   #set align(horizon)
