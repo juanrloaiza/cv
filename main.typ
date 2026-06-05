@@ -1,12 +1,12 @@
 #import "@preview/fontawesome:0.6.0": *
 
 #let lang = "es"
-#let translations = yaml("translations.yml")
+#let translations = yaml("data/i18n/translations.yml")
 #let t(key) = {
   return translations.at(key).at(lang)
 }
 
-#let countries = yaml("countries.yml")
+#let countries = yaml("data/i18n/countries.yml")
 #let translateCountry(country_key) = {
   return countries.at(country_key).at(lang)
 }
@@ -33,8 +33,7 @@
 
 = Juan Raúl Loaiza Arias
 
-Profesor asociado · Departamento de Filosofía · Universidad Alberto Hurtado · Chile
-
+#t("affiliation")
 
 #block(width: 100%)[
   #set align(horizon)
@@ -142,92 +141,92 @@ Profesor asociado · Departamento de Filosofía · Universidad Alberto Hurtado �
   )
 }
 
-// == #t("funding")
+== #t("funding")
 
-// #let funding = yaml("data/funding.yml")
-// #for f in funding {
-//   grid(
-//     [
-//       #set par(justify: false)
-//       #f.dates
-//     ],
-//     [
-//       * #eval(f.name, mode: "markup")*\
-//       #if "project" in f.keys() [
-//         #t("project"): "#eval(f.project, mode: "markup")" #if f.lang != lang [ (_#eval(f.translation, mode: "markup")_) ] \ ]
-//       #if "amount" in f.keys() [
-//         #t("amount"): #f.amount \
-//       ]
-//       #f.institution (#if { "city" in f.keys() } [#f.city, ]#translateCountry(f.country))
-//     ],
-//   )
-// }
+#let funding = yaml("data/funding.yml")
+#for f in funding {
+  grid(
+    [
+      #set par(justify: false)
+      #f.dates
+    ],
+    [
+      * #eval(f.name, mode: "markup")*\
+      #if "project" in f.keys() [
+        #t("project"): "#eval(f.project, mode: "markup")" #if f.lang != lang [ (_#eval(f.translation, mode: "markup")_) ] \ ]
+      #if "amount" in f.keys() [
+        #t("amount"): #f.amount \
+      ]
+      #f.institution (#if { "city" in f.keys() } [#f.city, ]#translateCountry(f.country))
+    ],
+  )
+}
 
-// == #t("awards")
+== #t("awards")
 
-// #let awards = yaml("data/awards.yml")
-// #for aw in awards {
-//   grid(
-//     [
-//       #set par(justify: false)
-//       #aw.dates
-//     ],
-//     [
-//       * #eval(aw.name, mode: "markup")*\
-//       #aw.institution (#if { "city" in aw.keys() } [#aw.city, ]#translateCountry(aw.country))
-//     ],
-//   )
-// }
+#let awards = yaml("data/awards.yml")
+#for aw in awards {
+  grid(
+    [
+      #set par(justify: false)
+      #aw.dates
+    ],
+    [
+      * #eval(aw.name, mode: "markup")*\
+      #aw.institution (#if { "city" in aw.keys() } [#aw.city, ]#translateCountry(aw.country))
+    ],
+  )
+}
 
-// == #t("talks")
+== #t("talks")
 
-// #let talks = yaml("data/talks.yml")
-// #let isInvited(talk) = { "invited" in talk.keys() and talk.invited == true }
-// #let isNotInvited(talk) = { not isInvited(talk) }
-// #let sortTalks(talkA, talkB) = {
-//   let dateArrayA = talkA.date.split("-")
-//   let dateArrayB = talkB.date.split("-")
+#let talks = yaml("data/talks.yml")
+#let isInvited(talk) = { "invited" in talk.keys() and talk.invited == true }
+#let isNotInvited(talk) = { not isInvited(talk) }
+#let sortTalks(talkA, talkB) = {
+  let dateArrayA = talkA.date.split("-")
+  let dateArrayB = talkB.date.split("-")
 
-//   let yearA = dateArrayA.at(0)
-//   let yearB = dateArrayB.at(0)
+  let yearA = dateArrayA.at(0)
+  let yearB = dateArrayB.at(0)
 
-//   return yearA > yearB
-// }
+  return yearA > yearB
+}
 
-// === #t("talks-refereed")
+=== #t("talks-refereed")
 
-// #for t in talks.filter(isNotInvited).sorted(by: sortTalks).slice(0, 15) {
-//   grid(
-//     [
-//       #set par(justify: false)
-//       #parseDate(t.date)
-//     ],
-//     [
-//       * #eval(t.title, mode: "markup")*\
-//       #t.conference.
-//       #if "institution" in t.keys() [#t.institution]\
-//       #set text(size: 9pt)
-//       #if "city" in t.keys() [#t.city, ]#if "country" in t.keys() [#translateCountry(t.country)] else [Online]
-//     ],
-//   )
-// }
+#for t in talks.filter(isNotInvited).sorted(by: sortTalks).slice(0, 15) {
+  grid(
+    [
+      #set par(justify: false)
+      #parseDate(t.date)
+    ],
+    [
+      * #eval(t.title, mode: "markup")*\
+      #t.conference.
+      #if "institution" in t.keys() [#t.institution]\
+      #set text(size: 9pt)
+      #if "city" in t.keys() [#t.city, ]#if "country" in t.keys() [#translateCountry(t.country)] else [Online]
+    ],
+  )
+}
 
-// === #t("talks-invited")
-// #for t in talks.filter(isInvited).slice(0, 10) {
-//   grid(
-//     [
-//       #set par(justify: false)
-//       #parseDate(t.date)
-//     ],
-//     [
-//       * #eval(t.title, mode: "markup")*\
-//       #t.conference.
-//       #if "institution" in t.keys() [#t.institution]\
-//       #set text(size: 9pt)
-//       #if "city" in t.keys() [#t.city, ]#if "country" in t.keys() [#translateCountry(t.country)] else [Online]
-//     ],
-//   )
-// }
+=== #t("talks-invited")
+#for t in talks.filter(isInvited).slice(0, 10) {
+  grid(
+    [
+      #set par(justify: false)
+      #parseDate(t.date)
+    ],
+    [
+      * #eval(t.title, mode: "markup")*\
+      #t.conference.
+      #if "institution" in t.keys() [#t.institution]\
+      #set text(size: 9pt)
+      #if "city" in t.keys() [#t.city, ]#if "country" in t.keys() [#translateCountry(t.country)] else [Online]
+    ],
+  )
+}
 
 == #t("academic-service")
 
