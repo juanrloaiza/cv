@@ -1,0 +1,43 @@
+- name: 'Fondecyt Iniciación 2025'
+  project: 'Objetividad y diversidad cultural de las emociones: hacia una ciencia intercultural y situada de la emoción'
+  translation: "Objectivity and cultural diversity of emotions: towards an intercultural and situated science of emotion"
+  institution: Agencia Nacional de Investigación y Desarrollo (ANID)
+  amount: 63.072.000 CLP (~$66.000 USD)
+  country: cl
+  dates: 09.2025 - 
+  lang: es
+
+- name: _Rückkehrende Fachkräfte_ (Returning Experts) Funding
+  institution: Centrum für Internationale Migration und Entwicklung (CIM), Deutsche Gesellschaft für Internationale Zusammenarbeit (GIZ)
+  country: de
+  dates: 12.2020 - 12.2022
+
+- name: Tie-over Stipendium (Transitional scholarship for postdoctoral research)
+  amount: €4.050
+  institution: Berlin School of Mind and Brain
+  country: de
+  dates: 10.2020 - 12.2020
+
+- name: Kurzstipendien für Doktoranden (_Short-stay scholarship for PhD students_)
+  institution: Deutscher Akademischer Austauschdienst (DAAD)
+  amount: €3.553
+  city: Bonn
+  country: de
+  dates: 04.2019 - 05.2019
+
+- name: PhD Full Scholarship (3 years)
+  institution: Berlin School of Mind and Brain
+  amount: €46.200
+  country: de
+  dates: 10.2016 - 09.2019
+
+- name: Crédito-Beca DAAD-Colfuturo (_Master's partial scholarship_)
+  institution: Deutscher Akademischer Austauschdienst (DAAD) & COLFUTURO
+  country: de
+  dates: 09.2014 - 09.2016
+
+- name: Beca Excelencia Académica - Pregrado (_Academic excellence undergraduate scholarship_) – 100%
+  institution: Universidad del Rosario
+  city: Bogotá
+  country: co
+  dates: 07.2009 - 03.2014
