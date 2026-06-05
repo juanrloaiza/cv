@@ -64,9 +64,10 @@
 
 #v(1em)
 #columns(2)[
+  #let areas = yaml("data/02 areas.yml")
   == #t("specialization")
 
-  #for area in yaml("data/areas.yml").specialization {
+  #for area in areas.specialization {
     [- #area.at(lang)]
   }
 
@@ -74,7 +75,7 @@
 
   == #t("competence")
 
-  #for area in yaml("data/areas.yml").competence {
+  #for area in areas.competence {
     [- #area.at(lang)]
   }
 
@@ -119,7 +120,7 @@
 
 #show bibliography: none
 #bibliography(
-  "data/02 publications.bib",
+  "data/03 publications.bib",
   title: none,
   full: true,
 )
@@ -127,7 +128,7 @@
 
 == #t("employment")
 
-#let employment = yaml("data/employment.yml")
+#let employment = yaml("data/04 employment.yml")
 #for el in employment {
   grid(
     [#str(el.start_year) -
@@ -143,7 +144,7 @@
 
 == #t("funding")
 
-#let funding = yaml("data/funding.yml")
+#let funding = yaml("data/05 funding.yml")
 #for f in funding {
   grid(
     [
@@ -164,7 +165,7 @@
 
 == #t("awards")
 
-#let awards = yaml("data/awards.yml")
+#let awards = yaml("data/06 awards.yml")
 #for aw in awards {
   grid(
     [
@@ -180,7 +181,7 @@
 
 == #t("talks")
 
-#let talks = yaml("data/talks.yml")
+#let talks = yaml("data/07 talks.yml")
 #let isInvited(talk) = { "invited" in talk.keys() and talk.invited == true }
 #let isNotInvited(talk) = { not isInvited(talk) }
 #let sortTalks(talkA, talkB) = {
@@ -238,7 +239,7 @@
   [
     === #t("reviewer")
 
-    #let reviews = yaml("data/reviewer.yml")
+    #let reviews = yaml("data/10 reviewer.yml")
     #reviews.sorted().join(", ")
   ],
 
@@ -253,7 +254,7 @@
 
     === #t("languages")
 
-    #for l in yaml("data/99 languages.yml").at(lang) [
+    #for l in yaml("data/09 languages.yml").at(lang) [
       - #l
     ]],
 )
