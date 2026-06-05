@@ -65,9 +65,10 @@ Profesor asociado · Departamento de Filosofía · Universidad Alberto Hurtado �
 
 #v(1em)
 #columns(2)[
+  #let areas = yaml("data/02 areas.yml")
   == #t("specialization")
 
-  #for area in yaml("data/areas.yml").specialization {
+  #for area in areas.specialization {
     [- #area.at(lang)]
   }
 
@@ -75,7 +76,7 @@ Profesor asociado · Departamento de Filosofía · Universidad Alberto Hurtado �
 
   == #t("competence")
 
-  #for area in yaml("data/areas.yml").competence {
+  #for area in areas.competence {
     [- #area.at(lang)]
   }
 
@@ -120,7 +121,7 @@ Profesor asociado · Departamento de Filosofía · Universidad Alberto Hurtado �
 
 #show bibliography: none
 #bibliography(
-  "data/02 publications.bib",
+  "data/03 publications.bib",
   title: none,
   full: true,
 )
@@ -128,7 +129,7 @@ Profesor asociado · Departamento de Filosofía · Universidad Alberto Hurtado �
 
 == #t("employment")
 
-#let employment = yaml("data/employment.yml")
+#let employment = yaml("data/04 employment.yml")
 #for el in employment {
   grid(
     [#str(el.start_year) -
@@ -142,92 +143,92 @@ Profesor asociado · Departamento de Filosofía · Universidad Alberto Hurtado �
   )
 }
 
-// == #t("funding")
+== #t("funding")
 
-// #let funding = yaml("data/funding.yml")
-// #for f in funding {
-//   grid(
-//     [
-//       #set par(justify: false)
-//       #f.dates
-//     ],
-//     [
-//       * #eval(f.name, mode: "markup")*\
-//       #if "project" in f.keys() [
-//         #t("project"): "#eval(f.project, mode: "markup")" #if f.lang != lang [ (_#eval(f.translation, mode: "markup")_) ] \ ]
-//       #if "amount" in f.keys() [
-//         #t("amount"): #f.amount \
-//       ]
-//       #f.institution (#if { "city" in f.keys() } [#f.city, ]#translateCountry(f.country))
-//     ],
-//   )
-// }
+#let funding = yaml("data/05 funding.yml")
+#for f in funding {
+  grid(
+    [
+      #set par(justify: false)
+      #f.dates
+    ],
+    [
+      * #eval(f.name, mode: "markup")*\
+      #if "project" in f.keys() [
+        #t("project"): "#eval(f.project, mode: "markup")" #if f.lang != lang [ (_#eval(f.translation, mode: "markup")_) ] \ ]
+      #if "amount" in f.keys() [
+        #t("amount"): #f.amount \
+      ]
+      #f.institution (#if { "city" in f.keys() } [#f.city, ]#translateCountry(f.country))
+    ],
+  )
+}
 
-// == #t("awards")
+== #t("awards")
 
-// #let awards = yaml("data/awards.yml")
-// #for aw in awards {
-//   grid(
-//     [
-//       #set par(justify: false)
-//       #aw.dates
-//     ],
-//     [
-//       * #eval(aw.name, mode: "markup")*\
-//       #aw.institution (#if { "city" in aw.keys() } [#aw.city, ]#translateCountry(aw.country))
-//     ],
-//   )
-// }
+#let awards = yaml("data/06 awards.yml")
+#for aw in awards {
+  grid(
+    [
+      #set par(justify: false)
+      #aw.dates
+    ],
+    [
+      * #eval(aw.name, mode: "markup")*\
+      #aw.institution (#if { "city" in aw.keys() } [#aw.city, ]#translateCountry(aw.country))
+    ],
+  )
+}
 
-// == #t("talks")
+== #t("talks")
 
-// #let talks = yaml("data/talks.yml")
-// #let isInvited(talk) = { "invited" in talk.keys() and talk.invited == true }
-// #let isNotInvited(talk) = { not isInvited(talk) }
-// #let sortTalks(talkA, talkB) = {
-//   let dateArrayA = talkA.date.split("-")
-//   let dateArrayB = talkB.date.split("-")
+#let talks = yaml("data/07 talks.yml")
+#let isInvited(talk) = { "invited" in talk.keys() and talk.invited == true }
+#let isNotInvited(talk) = { not isInvited(talk) }
+#let sortTalks(talkA, talkB) = {
+  let dateArrayA = talkA.date.split("-")
+  let dateArrayB = talkB.date.split("-")
 
-//   let yearA = dateArrayA.at(0)
-//   let yearB = dateArrayB.at(0)
+  let yearA = dateArrayA.at(0)
+  let yearB = dateArrayB.at(0)
 
-//   return yearA > yearB
-// }
+  return yearA > yearB
+}
 
-// === #t("talks-refereed")
+=== #t("talks-refereed")
 
-// #for t in talks.filter(isNotInvited).sorted(by: sortTalks).slice(0, 15) {
-//   grid(
-//     [
-//       #set par(justify: false)
-//       #parseDate(t.date)
-//     ],
-//     [
-//       * #eval(t.title, mode: "markup")*\
-//       #t.conference.
-//       #if "institution" in t.keys() [#t.institution]\
-//       #set text(size: 9pt)
-//       #if "city" in t.keys() [#t.city, ]#if "country" in t.keys() [#translateCountry(t.country)] else [Online]
-//     ],
-//   )
-// }
+#for t in talks.filter(isNotInvited).sorted(by: sortTalks).slice(0, 15) {
+  grid(
+    [
+      #set par(justify: false)
+      #parseDate(t.date)
+    ],
+    [
+      * #eval(t.title, mode: "markup")*\
+      #t.conference.
+      #if "institution" in t.keys() [#t.institution]\
+      #set text(size: 9pt)
+      #if "city" in t.keys() [#t.city, ]#if "country" in t.keys() [#translateCountry(t.country)] else [Online]
+    ],
+  )
+}
 
-// === #t("talks-invited")
-// #for t in talks.filter(isInvited).slice(0, 10) {
-//   grid(
-//     [
-//       #set par(justify: false)
-//       #parseDate(t.date)
-//     ],
-//     [
-//       * #eval(t.title, mode: "markup")*\
-//       #t.conference.
-//       #if "institution" in t.keys() [#t.institution]\
-//       #set text(size: 9pt)
-//       #if "city" in t.keys() [#t.city, ]#if "country" in t.keys() [#translateCountry(t.country)] else [Online]
-//     ],
-//   )
-// }
+=== #t("talks-invited")
+#for t in talks.filter(isInvited).slice(0, 10) {
+  grid(
+    [
+      #set par(justify: false)
+      #parseDate(t.date)
+    ],
+    [
+      * #eval(t.title, mode: "markup")*\
+      #t.conference.
+      #if "institution" in t.keys() [#t.institution]\
+      #set text(size: 9pt)
+      #if "city" in t.keys() [#t.city, ]#if "country" in t.keys() [#translateCountry(t.country)] else [Online]
+    ],
+  )
+}
 
 == #t("academic-service")
 
@@ -239,7 +240,7 @@ Profesor asociado · Departamento de Filosofía · Universidad Alberto Hurtado �
   [
     === #t("reviewer")
 
-    #let reviews = yaml("data/reviewer.yml")
+    #let reviews = yaml("data/10 reviewer.yml")
     #reviews.sorted().join(", ")
   ],
 
@@ -254,7 +255,7 @@ Profesor asociado · Departamento de Filosofía · Universidad Alberto Hurtado �
 
     === #t("languages")
 
-    #for l in yaml("data/99 languages.yml").at(lang) [
+    #for l in yaml("data/09 languages.yml").at(lang) [
       - #l
     ]],
 )
