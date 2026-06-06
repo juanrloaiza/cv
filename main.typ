@@ -1,4 +1,4 @@
-#import "@preview/fontawesome:0.6.0": *
+#import "@preview/fontawesome:0.6.1": *
 
 #let lang = "es"
 #let translations = yaml("data/i18n/translations.yml")
@@ -181,12 +181,11 @@
 
 == #t("talks")
 
-#let talks = yaml("data/07 talks.yml")
-#let isInvited(talk) = { "invited" in talk.keys() and talk.invited == true }
-#let isNotInvited(talk) = { not isInvited(talk) }
+#let talks = csv("data/07 talks.csv", row-type: dictionary)
+
 #let sortTalks(talkA, talkB) = {
-  let dateArrayA = talkA.date.split("-")
-  let dateArrayB = talkB.date.split("-")
+  let dateArrayA = talkA.Fecha.split("-")
+  let dateArrayB = talkB.Fecha.split("-")
 
   let yearA = dateArrayA.at(0)
   let yearB = dateArrayB.at(0)
@@ -194,40 +193,32 @@
   return yearA > yearB
 }
 
+#let talkTemplate(talk) = grid(
+  [
+    #set par(justify: false)
+    #parseDate(talk.Fecha)
+  ],
+  [
+    * #eval(talk.Título, mode: "markup")*\
+    #if talk.at("Evento") != "" [#talk.Evento.]
+    #if "Institución anfitriona" in talk.keys() [#talk.at("Institución anfitriona")#if (
+        talk.at("País (Anfitrión)") != ""
+      ) [, #talk.at("País (Anfitrión)").split(", ").dedup().join("")]
+    ]
+
+  ],
+)
+
+#let invitedTalks = talks.filter(talk => talk.Tipo == "Charla invitada").sorted(by: sortTalks)
+
+#let notInvitedTalks = talks.filter(talk => talk not in invitedTalks).sorted(by: sortTalks)
+
 === #t("talks-refereed")
 
-#for t in talks.filter(isNotInvited).sorted(by: sortTalks).slice(0, 15) {
-  grid(
-    [
-      #set par(justify: false)
-      #parseDate(t.date)
-    ],
-    [
-      * #eval(t.title, mode: "markup")*\
-      #t.conference.
-      #if "institution" in t.keys() [#t.institution]\
-      #set text(size: 9pt)
-      #if "city" in t.keys() [#t.city, ]#if "country" in t.keys() [#translateCountry(t.country)] else [Online]
-    ],
-  )
-}
+#for t in notInvitedTalks.slice(0, 15) { talkTemplate(t) }
 
 === #t("talks-invited")
-#for t in talks.filter(isInvited).slice(0, 10) {
-  grid(
-    [
-      #set par(justify: false)
-      #parseDate(t.date)
-    ],
-    [
-      * #eval(t.title, mode: "markup")*\
-      #t.conference.
-      #if "institution" in t.keys() [#t.institution]\
-      #set text(size: 9pt)
-      #if "city" in t.keys() [#t.city, ]#if "country" in t.keys() [#translateCountry(t.country)] else [Online]
-    ],
-  )
-}
+#for t in invitedTalks.slice(0, 15) { talkTemplate((t)) }
 
 == #t("academic-service")
 
