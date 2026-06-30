@@ -11,14 +11,19 @@
   return countries.at(country_key).at(lang)
 }
 
-#set text(lang: lang, font: "Libertinus Serif", size: 10pt)
+#set text(lang: lang, font: "Lato", size: 10pt)
 #set par(justify: true)
 #set page(paper: "us-letter", margin: 0.8in, numbering: "1")
 
 #show heading.where(level: 1): set text(size: 1.5em)
-#show heading.where(level: 2): set block(below: 1em, above: 2em)
-#show heading.where(level: 3): set block(above: 1em)
-#show heading.where(level: 4): set text(weight: "semibold")
+#show heading.where(level: 2): set block(width: 100%, stroke: (bottom: 0.5pt), inset: (y: 4pt))
+
+#show heading.where(level: 2): set block(below: 0.85em, above: 2em)
+
+#show heading.where(level: 3): set block(above: 1em, below: 1em)
+#show heading.where(level: 4): set block(above: 1em)
+#show heading.where(level: 4): set text(style: "italic", weight: 400)
+
 
 #let highlightColor = black
 
@@ -43,8 +48,24 @@
   #fa-icon("globe") #h(0.25em) #link("www.juanrloaiza.com")
 ]
 
-#set grid(columns: (10%, auto), gutter: 1em)
+#set grid(columns: (9%, auto), gutter: 1em)
 #show grid.cell.where(x: 0): set text(size: 0.8em)
+
+== #t("employment")
+
+#let employment = yaml("data/04 employment.yml")
+#for el in employment {
+  grid(
+    [#str(el.start_year) -
+      #if "end_year" in el.keys() [#str(el.end_year)]
+    ],
+    [
+      *#eval(el.role.at(lang), mode: "markup")* ·
+      #el.faculty, #el.institution,
+      #el.location.at(lang)
+    ],
+  )
+}
 
 == #t("education")
 
@@ -53,11 +74,12 @@
   grid(
     [#str(el.start_year) - #str(el.end_year)],
     [
-      #text(fill: highlightColor)[*#el.degree.at(lang)*]\
+      #text(fill: highlightColor)[*#el.degree.at(lang)*] ·
       #el.faculty, #el.institution \
-      #t("thesis"): "#el.thesis.title" \
-      #t("supervision"): #el.thesis.supervisors.join(", ", last: " & ") \
-      #t("qualification"): #el.thesis.qualification
+      #text(size: 0.9em)[
+        #t("thesis"): "#el.thesis.title" \
+        #t("supervision"): #el.thesis.supervisors.join(", ", last: " & ") \
+        #t("qualification"): #el.thesis.qualification]
     ],
   )
 }
@@ -89,34 +111,55 @@
 
 #show regex("Loaiza( Arias)?"): set text(weight: "bold", fill: highlightColor)
 
+#set par(hanging-indent: 1em)
+
 ==== #t("english")
 
-- @Loaiza2025a
-- @Loaiza2025b
-- @Loaiza2024a
-- @Loaiza2022b
-- @Loaiza2021
-- @Loaiza2017
+@Loaiza2025a
+
+@Loaiza2025b
+
+@Loaiza2024a
+
+@Loaiza2022b
+
+@Loaiza2021
+
+@Loaiza2017
+
+#v(1em)
 
 ==== #t("spanish")
 
 // - @BurdmanForthcoming
-- @Loaiza2025
-- @Loaiza2022
-- @CardonaSuarez2016
+@Loaiza2025
+
+@Loaiza2022
+
+@CardonaSuarez2016
+
+#v(1em)
 
 === #t("book-chapters-and-books")
 
-- @Loaiza2022a
-- @LoaizaArias2016
-- @LoaizaArias2016a
+@Loaiza2022a
+
+@LoaizaArias2016
+
+@LoaizaArias2016a
+
+#v(1em)
+
 
 === #t("commentaries-and-others")
 
-- @Loaiza2025d
-- @Loaiza2025c
-- @Eickers2017
-- @LoaizaArias2020
+@Loaiza2025d
+
+@Loaiza2025c
+
+@Eickers2017
+
+@LoaizaArias2020
 
 #show bibliography: none
 #bibliography(
@@ -125,22 +168,8 @@
   full: true,
 )
 
+#set par(hanging-indent: 0em)
 
-== #t("employment")
-
-#let employment = yaml("data/04 employment.yml")
-#for el in employment {
-  grid(
-    [#str(el.start_year) -
-      #if "end_year" in el.keys() [#str(el.end_year)]
-    ],
-    [
-      *#eval(el.role.at(lang), mode: "markup")*\
-      #el.faculty, #el.institution \
-      #el.location.at(lang)
-    ],
-  )
-}
 
 == #t("funding")
 
@@ -154,9 +183,9 @@
     [
       * #eval(f.name, mode: "markup")*\
       #if "project" in f.keys() [
-        #t("project"): "#eval(f.project, mode: "markup")" #if f.lang != lang [ (_#eval(f.translation, mode: "markup")_) ] \ ]
+        #t("project"): "#eval(f.project, mode: "markup")" #if f.lang != lang [ (_#eval(f.translation, mode: "markup")_) ].]
       #if "amount" in f.keys() [
-        #t("amount"): #f.amount \
+        #t("amount"): #f.amount.
       ]
       #f.institution (#if { "city" in f.keys() } [#f.city, ]#translateCountry(f.country))
     ],
@@ -216,9 +245,56 @@
 === #t("talks-refereed")
 
 #for t in notInvitedTalks.slice(0, 15) { talkTemplate(t) }
+#v(1em)
 
 === #t("talks-invited")
+
 #for t in invitedTalks.slice(0, 15) { talkTemplate((t)) }
+
+
+== Teaching experience
+
+=== Universidad Alberto Hurtado
+
+#columns[
+  ==== Pregrado
+
+  - Filosofía de las ciencias (2025, 2024)
+  - Seminario: Relatividad Conceptual (2025)
+  - Seminario: Wittgenstein (2024)
+  - Teoría del conocimiento (2023)
+
+  #colbreak()
+
+  ==== Magíster
+
+  - Epistemología Social (2025)
+
+  ==== Doctorado
+
+  - Emociones y clases naturales (2024)
+]
+
+#v(1em)
+
+#columns[
+=== Universidad del Rosario
+
+==== Pregrado
+
+- Lógica (2020, 2021, 2022)
+- Argumentación (2020, 2021, 2022)
+- Metodologías de Investigación (2020, 2021, 2022)
+
+#colbreak()
+
+=== Berlin School of Mind and Brain
+
+==== Magíster
+
+- Tutorial: Philosophy of Mind (2017, 2018)
+- Seminar: Theories of Emotions (2018)
+]
 
 == #t("academic-service")
 
