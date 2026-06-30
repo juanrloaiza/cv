@@ -131,7 +131,8 @@
 
 ==== #t("spanish")
 
-// - @BurdmanForthcoming
+@BurdmanEtAl2026
+
 @Loaiza2025
 
 @Loaiza2022
