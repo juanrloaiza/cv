@@ -1,0 +1,99 @@
+education:
+  en: "Education"
+  es: "Educación"
+
+thesis:
+  en: "Thesis"
+  es: "Tesis"
+
+supervision:
+  en: "Supervision"
+  es: "Supervisión"
+
+qualification:
+  en: "Qualification"
+  es: "Calificación"
+
+specialization:
+  en: "Areas of specialization"
+  es: "Áreas de especialización"
+
+competence:
+  en: "Areas of competence"
+  es: "Áreas de competencia"
+
+publications:
+  en: "Publications"
+  es: "Publicaciones"
+
+peer-reviewed:
+  en: "Peer reviewed articles in academic journals"
+  es: "Artículos en revistas académicas con revisión por pares"
+
+english:
+  en: "In English"
+  es: "En inglés"
+
+spanish:
+  en: "In Spanish"
+  es: "En español"
+
+book-chapters-and-books:
+  en: "Book chapters and books"
+  es: "Capítulos de libro y libros"
+
+commentaries-and-others:
+  en: "Commentaries and other publications"
+  es: "Comentarios y otras publicaciones"
+
+employment:
+  en: "Employment"
+  es: "Empleo"
+
+funding:
+  en: "Funding and scholarhips"
+  es: "Financiación y becas"
+
+awards:
+  en: "Awards and achievements"
+  es: "Premios y distinciones"
+
+talks:
+  en: "Selected talks in academic events"
+  es: "Charlas selectas en eventos académicos"
+
+talks-refereed:
+  en: "Talks in refereed academic events"
+  es: "Charlas en eventos académicos con referato"
+
+talks-invited:
+  en: "Invited talks"
+  es: "Charlas invitadas"
+
+academic-service:
+  en: "Academic service"
+  es: "Servicio académico"
+
+reviewer:
+  en: "Reviewer in academic journals"
+  es: "Revisor para revistas académicas"
+
+membership:
+  en: "Membership in academic societies"
+  es: "Membresía en sociedades y redes académicas"
+
+languages:
+  en: "Languages"
+  es: "Idiomas"
+
+amount:
+  en: "Amount"
+  es: "Suma"
+
+project:
+  es: "Proyecto"
+  en: "Project"
+
+affiliation:
+  es: "Profesor asociado · Departamento de Filosofía · Universidad Alberto Hurtado · Chile"
+  en: "Associate Professor · Departamento de Filosofía · Universidad Alberto Hurtado · Chile"

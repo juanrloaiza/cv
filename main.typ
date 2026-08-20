@@ -1,15 +1,12 @@
 #import "@preview/fontawesome:0.6.1": *
 
-#let lang = "es"
-#let translations = yaml("data/i18n/translations.yml")
-#let t(key) = {
-  return translations.at(key).at(lang)
-}
+#let lang = "en"
+#let translations = yaml("i18n/translations.yml")
+#let t = key => translations.at(key).at(lang)
 
-#let countries = yaml("data/i18n/countries.yml")
-#let translateCountry(country_key) = {
-  return countries.at(country_key).at(lang)
-}
+#let countries = yaml("i18n/countries.yml")
+#let translateCountry = key => countries.at(key).at(lang)
+
 
 #set text(lang: lang, font: "Lato", size: 10pt)
 #set par(justify: true)
@@ -131,6 +128,8 @@
 
 ==== #t("spanish")
 
+@Loaiza2026
+
 @BurdmanEtAl2026
 
 @Loaiza2025
@@ -153,6 +152,8 @@
 
 
 === #t("commentaries-and-others")
+
+@LoaizaEscobar2026
 
 @Loaiza2025d
 
@@ -279,22 +280,22 @@
 #v(1em)
 
 #columns[
-=== Universidad del Rosario
+  === Universidad del Rosario
 
-==== Pregrado
+  ==== Pregrado
 
-- Lógica (2020, 2021, 2022)
-- Argumentación (2020, 2021, 2022)
-- Metodologías de Investigación (2020, 2021, 2022)
+  - Lógica (2020, 2021, 2022)
+  - Argumentación (2020, 2021, 2022)
+  - Metodologías de Investigación (2020, 2021, 2022)
 
-#colbreak()
+  #colbreak()
 
-=== Berlin School of Mind and Brain
+  === Berlin School of Mind and Brain
 
-==== Magíster
+  ==== Magíster
 
-- Tutorial: Philosophy of Mind (2017, 2018)
-- Seminar: Theories of Emotions (2018)
+  - Tutorial: Philosophy of Mind (2017, 2018)
+  - Seminar: Theories of Emotions (2018)
 ]
 
 == #t("academic-service")
