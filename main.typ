@@ -7,10 +7,12 @@
 #let countries = yaml("i18n/countries.yml")
 #let translateCountry = key => countries.at(key).at(lang)
 
-
 #set text(lang: lang, font: "Lato", size: 10pt)
 #set par(justify: true)
 #set page(paper: "us-letter", margin: 0.8in, numbering: "1")
+
+#let marked = it => eval(it, mode: "markup")
+
 
 #show heading.where(level: 1): set text(size: 1.5em)
 #show heading.where(level: 2): set block(width: 100%, stroke: (bottom: 0.5pt), inset: (y: 4pt))
@@ -23,15 +25,6 @@
 
 #set grid(columns: (9%, auto), gutter: 1em)
 #show grid.cell.where(x: 0): set text(size: 0.8em)
-
-#let parseDate(dateString) = {
-  let dateArray = dateString.split("-")
-  let year = dateArray.at(0)
-  let month = dateArray.at(1)
-  let day = dateArray.at(2)
-
-  [#day.#month.#year]
-}
 
 = Juan Raúl Loaiza Arias
 
@@ -55,7 +48,7 @@
       #if "end_year" in el.keys() [#str(el.end_year)]
     ],
     [
-      *#eval(el.role.at(lang), mode: "markup")* ·
+      *#marked(el.role.at(lang))* ·
       #el.faculty, #el.institution,
       #el.location.at(lang)
     ],
@@ -181,9 +174,9 @@
       #f.dates
     ],
     [
-      * #eval(f.name, mode: "markup")*\
+      * #marked(f.name)*\
       #if "project" in f.keys() [
-        #t("project"): "#eval(f.project, mode: "markup")" #if f.lang != lang [ (_#eval(f.translation, mode: "markup")_) ].]
+        #t("project"): "#marked(f.project)" #if f.lang != lang [ (_#marked(f.translation)_) ].]
       #if "amount" in f.keys() [
         #t("amount"): #f.amount.
       ]
@@ -202,7 +195,7 @@
       #aw.dates
     ],
     [
-      * #eval(aw.name, mode: "markup")*\
+      * #marked(aw.name)*\
       #aw.institution (#if { "city" in aw.keys() } [#aw.city, ]#translateCountry(aw.country))
     ],
   )
@@ -222,13 +215,19 @@
   return yearA > yearB
 }
 
+#let parseDate(dateString) = {
+  let dateArray = dateString.split("-")
+  let year = dateArray.at(0)
+  let month = dateArray.at(1)
+  let day = dateArray.at(2)
+
+  [#month.#year]
+}
+
 #let talkTemplate(talk) = grid(
+  parseDate(talk.Fecha),
   [
-    #set par(justify: false)
-    #parseDate(talk.Fecha)
-  ],
-  [
-    * #eval(talk.Título, mode: "markup")*\
+    * #marked(talk.Título)*\
     #if talk.at("Evento") != "" [#talk.Evento.]
     #if "Institución anfitriona" in talk.keys() [#talk.at("Institución anfitriona")#if (
         talk.at("País (Anfitrión)") != ""
