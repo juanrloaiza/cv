@@ -1,6 +1,6 @@
 #import "@preview/fontawesome:0.6.1": *
 
-#let lang = "en"
+#let lang = "es"
 #let translations = yaml("i18n/translations.yml")
 #let t = key => translations.at(key).at(lang)
 
@@ -21,8 +21,6 @@
 #show heading.where(level: 4): set block(above: 1em)
 #show heading.where(level: 4): set text(style: "italic", weight: 400)
 
-
-#let highlightColor = black
 
 #let parseDate(dateString) = {
   let dateArray = dateString.split("-")
@@ -71,7 +69,7 @@
   grid(
     [#str(el.start_year) - #str(el.end_year)],
     [
-      #text(fill: highlightColor)[*#el.degree.at(lang)*] ·
+      #text[*#el.degree.at(lang)*] ·
       #el.faculty, #el.institution \
       #text(size: 0.9em)[
         #t("thesis"): "#el.thesis.title" \
@@ -106,7 +104,7 @@
 
 #set cite(form: "full", style: "apa")
 
-#show regex("Loaiza( Arias)?"): set text(weight: "bold", fill: highlightColor)
+#show regex("Loaiza( Arias)?"): set text(weight: "bold")
 
 #set par(hanging-indent: 1em)
 
