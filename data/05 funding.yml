@@ -1,3 +1,9 @@
+- name: 'Erasmus+ International Credit Mobility'
+  institution: Paris Lodron Universität Salzburg
+  amount: €3.065
+  country: at
+  dates: "10.2026"
+
 - name: 'Fondecyt Iniciación 2025'
   project: 'Objetividad y diversidad cultural de las emociones: hacia una ciencia intercultural y situada de la emoción'
   translation: "Objectivity and cultural diversity of emotions: towards an intercultural and situated science of emotion"

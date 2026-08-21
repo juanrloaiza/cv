@@ -21,6 +21,8 @@
 #show heading.where(level: 4): set block(above: 1em)
 #show heading.where(level: 4): set text(style: "italic", weight: 400)
 
+#set grid(columns: (9%, auto), gutter: 1em)
+#show grid.cell.where(x: 0): set text(size: 0.8em)
 
 #let parseDate(dateString) = {
   let dateArray = dateString.split("-")
@@ -43,8 +45,6 @@
   #fa-icon("globe") #h(0.25em) #link("www.juanrloaiza.com")
 ]
 
-#set grid(columns: (9%, auto), gutter: 1em)
-#show grid.cell.where(x: 0): set text(size: 0.8em)
 
 == #t("employment")
 
