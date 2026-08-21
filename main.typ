@@ -7,7 +7,7 @@
 #let countries = yaml("i18n/countries.yml")
 #let translateCountry = key => countries.at(key).at(lang)
 
-#set text(lang: lang, font: "Lato", size: 10pt)
+#set text(lang: lang, font: "PT Sans", size: 10pt)
 #set par(justify: true)
 #set page(paper: "us-letter", margin: 0.8in, numbering: "1")
 
@@ -233,7 +233,6 @@
         talk.at("País (Anfitrión)") != ""
       ) [, #talk.at("País (Anfitrión)").split(", ").dedup().join("")]
     ]
-
   ],
 )
 
@@ -258,7 +257,7 @@
 #columns[
   ==== Pregrado
 
-  - Filosofía de las ciencias (2025, 2024)
+  - Filosofía de las ciencias (2026, 2025, 2024)
   - Seminario: Relatividad Conceptual (2025)
   - Seminario: Wittgenstein (2024)
   - Teoría del conocimiento (2023)
@@ -272,6 +271,7 @@
   ==== Doctorado
 
   - Emociones y clases naturales (2024)
+  - Objetividad en la ciencia (2026)
 ]
 
 #v(1em)
@@ -313,16 +313,17 @@
     === #t("membership")
 
     - Red Latinoamericana de Estudios Afectivos
-    - International Society for Research on Emotions (ISRE)
+      - Cofundador (2025)
     - Asociación Latinoamericana de Filosofía Analítica (ALFAn)
+      - Vocal (2026-2028)
+    - International Society for Research on Emotions (ISRE)
     - Sociedad Chilena de Filosofía de la Ciencia (SOCHIFIC)
     - Sociedad Colombiana de Filosofía (SCF)
 
     === #t("languages")
 
-    #for l in yaml("data/09 languages.yml").at(lang) [
-      - #l
-    ]],
+    #for l in yaml("data/09 languages.yml").at(lang) [- #l]
+  ],
 )
 
 
