@@ -14,11 +14,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: typst-community/setup-typst@v5
-      
+
+      - name: Install Font Awesome
+        run: |
+          curl -sSL -o fa.zip https://github.com/FortAwesome/Font-Awesome/releases/download/6.7.2/fontawesome-free-6.7.2-desktop.zip
+          unzip -q fa.zip -d fa
+          mkdir -p fonts
+          find fa -name "*.otf" -exec cp {} fonts/ \;
+
       - name: Compile PDFs
         run: |
           for lang in en es; do
-            typst compile --input lang=$lang main.typ LoaizaCV_$lang.pdf
+            typst compile --font-path fonts --input lang=$lang main.typ LoaizaCV_$lang.pdf
           done
 
       - name: Delete previous release and tag
