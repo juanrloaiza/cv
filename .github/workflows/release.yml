@@ -32,9 +32,9 @@ jobs:
 
       - name: Compile PDFs
         run: |
-          for lang in en es; do
-            typst compile --font-path fonts --input lang=$lang main.typ LoaizaCV_$lang.pdf
-          done
+          typst compile --font-path fonts --input lang=es main.typ LoaizaCV_es.pdf
+          typst compile --font-path fonts --input lang=en main.typ LoaizaCV_en.pdf
+          
 
       - name: Delete previous release and tag
         env:
