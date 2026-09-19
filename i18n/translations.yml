@@ -97,3 +97,15 @@ project:
 affiliation:
   es: "Profesor asociado · Departamento de Filosofía · Universidad Alberto Hurtado · Chile"
   en: "Associate Professor · Departamento de Filosofía · Universidad Alberto Hurtado · Chile"
+
+pregrado:
+  es: "Pregrado"
+  en: "Undergraduate"
+
+magister:
+  es: "Magíster"
+  en: "Master"
+
+phd:
+  es: "Doctorado"
+  en: "Doctorate"

@@ -255,7 +255,7 @@
 === Universidad Alberto Hurtado
 
 #columns[
-  ==== Pregrado
+  ==== #t("pregrado")
 
   - Filosofía de las ciencias (2026, 2025, 2024)
   - Seminario: Relatividad Conceptual (2025)
@@ -264,11 +264,11 @@
 
   #colbreak()
 
-  ==== Magíster
+  ==== #t("magister")
 
   - Epistemología Social (2025)
 
-  ==== Doctorado
+  ==== #t("phd")
 
   - Emociones y clases naturales (2024)
   - Objetividad en la ciencia (2026)
@@ -279,7 +279,7 @@
 #columns[
   === Universidad del Rosario
 
-  ==== Pregrado
+  ==== #t("pregrado")
 
   - Lógica (2020, 2021, 2022)
   - Argumentación (2020, 2021, 2022)
@@ -289,7 +289,7 @@
 
   === Berlin School of Mind and Brain
 
-  ==== Magíster
+  ==== #t("magister")
 
   - Tutorial: Philosophy of Mind (2017, 2018)
   - Seminar: Theories of Emotions (2018)
