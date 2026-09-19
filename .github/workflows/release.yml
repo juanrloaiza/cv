@@ -22,6 +22,14 @@ jobs:
           mkdir -p fonts
           find fa -name "*.otf" -exec cp {} fonts/ \;
 
+      - name: Install PT Sans
+        run: |
+          mkdir -p fonts
+          base=https://github.com/google/fonts/raw/main/ofl/ptsans
+          for f in Regular Bold Italic BoldItalic; do
+            curl -sSL -o "fonts/PT_Sans-Web-$f.ttf" "$base/PT_Sans-Web-$f.ttf"
+          done
+
       - name: Compile PDFs
         run: |
           for lang in en es; do
