@@ -1,30 +1,19 @@
 #import "@preview/fontawesome:0.6.1": *
+#import "config/headings.typ": headings
+#import "config/general.typ": general-config
 
-#let lang = "es"
+#let lang = "en"
+
+#show: general-config.with(lang: lang)
+#show: headings
+
 #let translations = yaml("i18n/translations.yml")
 #let t = key => translations.at(key).at(lang)
 
 #let countries = yaml("i18n/countries.yml")
 #let translateCountry = key => countries.at(key).at(lang)
 
-#set text(lang: lang, font: "PT Sans", size: 10pt)
-#set par(justify: true)
-#set page(paper: "us-letter", margin: 0.8in, numbering: "1")
-
 #let marked = it => eval(it, mode: "markup")
-
-
-#show heading.where(level: 1): set text(size: 1.5em)
-#show heading.where(level: 2): set block(width: 100%, stroke: (bottom: 0.5pt), inset: (y: 4pt))
-
-#show heading.where(level: 2): set block(below: 0.85em, above: 2em)
-
-#show heading.where(level: 3): set block(above: 1em, below: 1em)
-#show heading.where(level: 4): set block(above: 1em)
-#show heading.where(level: 4): set text(style: "italic", weight: 400)
-
-#set grid(columns: (9%, auto), gutter: 1em)
-#show grid.cell.where(x: 0): set text(size: 0.8em)
 
 = Juan Raúl Loaiza Arias
 
