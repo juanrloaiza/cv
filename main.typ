@@ -2,7 +2,7 @@
 #import "config/headings.typ": headings
 #import "config/general.typ": general-config
 
-#let lang = "en"
+#let lang = sys.inputs.at("lang", default: "es")
 
 #show: general-config.with(lang: lang)
 #show: headings
