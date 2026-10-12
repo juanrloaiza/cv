@@ -239,7 +239,7 @@
 #for t in invitedTalks.slice(0, 15) { talkTemplate((t)) }
 
 
-== Teaching experience
+== #t("teaching-experience")
 
 === Universidad Alberto Hurtado
 
